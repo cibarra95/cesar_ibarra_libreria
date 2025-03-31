@@ -11,6 +11,8 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
+      - ~/.ssh/id_ed25519_github:/var/jenkins_home/.ssh/id_ed25519_github:ro
+      - ./jenkins_ssh_config:/var/jenkins_home/.ssh/config:ro
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       JAVA_OPTS: -Djenkins.install.runSetupWizard=false
