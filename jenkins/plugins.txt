@@ -1,0 +1,7 @@
+git
+workflow-aggregator
+pipeline-groovy-lib
+blueocean
+github
+github-branch-source
+generic-webhook-trigger
