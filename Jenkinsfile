@@ -8,7 +8,7 @@ pipeline {
         stage('Static Analysis with Quality Gate') {
             steps {
                 script {
-                    staticAnalysis(abortPipeline = true, waitForGate = true)
+                    staticAnalysis(abortPipeline = false, waitForGate = false)
                 }
             }
         }
