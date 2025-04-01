@@ -5,10 +5,10 @@ pipeline {
 
 // Correr el pipeline de calidad de código
     stages {
-        stage('Static Analysis') {
+        stage('Static Analysis with Quality Gate') {
             steps {
                 script {
-                    staticAnalysis(true)
+                    staticAnalysis(abortPipeline = true, waitForGate = true)
                 }
             }
         }
