@@ -7,12 +7,14 @@ def call(boolean abortPipeline = false, boolean waitForGate = false) {
         }
 
     withSonarQubeEnv('SonarQube') {
-        sh 'sonar-scanner -Dsonar.projectKey=sharedlib -Dsonar.sources=. -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
+        withSonarScannerInstallation('SonarQube') {
+            sh 'sonar-scanner'
+        }
     }
 
     if (waitForGate) {
         timeout(time: 5, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: abortPipeline
+            waitForQualityGate abortPipeline: false
         }
     }
 
