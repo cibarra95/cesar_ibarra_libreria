@@ -6,12 +6,14 @@ def call(boolean abortPipeline = false, boolean waitForGate = false) {
             error("Abortando pipeline por abortPipeline = true")
         }
 
+    // Ejecuta el scanner de sonarqube
     withSonarQubeEnv('SonarQube') {
         withSonarScannerInstallation('SonarQube') {
             sh 'sonar-scanner'
         }
     }
 
+    // Esperando el waitForGate
     if (waitForGate) {
         timeout(time: 5, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: false
